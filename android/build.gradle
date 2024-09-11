@@ -1,0 +1,23 @@
+// Root build.gradle file
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Correct Maven-style notation for the Android Gradle Plugin
+        classpath 'com.android.tools.build:gradle:8.1.0'
+        classpath 'com.google.gms:google-services:4.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23"
+    }
+}
+
+// Configure build directories for subprojects
+subprojects {
+    buildDir = file("${rootProject.buildDir}/${project.name}")
+}
+
+// Configure task to clean build directories
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
