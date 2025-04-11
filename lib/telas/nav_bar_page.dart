@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petmatch/telas/tela_inicial.dart'; // Adjust paths according to your project structure
+import 'package:petmatch/telas/tela_inicial.dart';
+import 'package:petmatch/telas/tela_desaparecidos.dart';
 import 'package:petmatch/telas/tela_denuncias.dart';
 import 'package:petmatch/telas/tela_config.dart';
 
@@ -16,6 +17,7 @@ class _NavBarPageState extends State<NavBarPage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     const TelaInicialWidget(),
+    const TelaDesaparecidosWidget(),  
     const TelaDenunciasWidget(),
     const TelaConfigWidget(),
   ];
@@ -26,10 +28,12 @@ class _NavBarPageState extends State<NavBarPage> {
     // Set initial page based on the argument
     if (widget.initialPage == 'Início') {
       _currentIndex = 0;
-    } else if (widget.initialPage == 'Denúncias') {
+    } else if (widget.initialPage == 'Desaparecidos') {
       _currentIndex = 1;
-    } else if (widget.initialPage == 'Configurações') {
+    } else if (widget.initialPage == 'Denúncias') {
       _currentIndex = 2;
+    } else if (widget.initialPage == 'Configurações') {
+      _currentIndex = 3;
     }
   }
 
@@ -47,6 +51,7 @@ class _NavBarPageState extends State<NavBarPage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
         selectedItemColor: Colors.white, // Set selected item color to orange
@@ -57,6 +62,10 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Início',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Desaparecidos',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
